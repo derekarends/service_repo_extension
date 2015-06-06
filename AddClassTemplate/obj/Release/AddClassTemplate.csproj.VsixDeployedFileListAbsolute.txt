@@ -1,0 +1,4 @@
+C:\Users\darends\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Thinkovator, Inc\AddClassTemplate\1.0\\AddClassTemplate.dll
+C:\Users\darends\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Thinkovator, Inc\AddClassTemplate\1.0\\AddClassTemplate.pkgdef
+C:\Users\darends\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Thinkovator, Inc\AddClassTemplate\1.0\\extension.vsixmanifest
+C:\Users\darends\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Thinkovator, Inc\AddClassTemplate\1.0\\AddClassTemplate.pdb

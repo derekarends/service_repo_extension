@@ -1,0 +1,9 @@
+﻿<#@ template language="C#" #>
+<#@ parameter name="BaseClassName" type="System.String" #>
+<#@ parameter name="ProjectName" type="System.String" #>
+namespace <#= ProjectName #>
+{
+	public class <#= BaseClassName #>ResponseModel
+	{
+	}
+}

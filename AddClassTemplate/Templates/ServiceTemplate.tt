@@ -1,0 +1,24 @@
+﻿<#@ template language="C#" #>
+<#@ parameter name="BaseClassName" type="System.String" #>
+<#@ parameter name="CreatedRepo" type="System.Boolean" #>
+<#@ parameter name="ProjectName" type="System.String" #>
+namespace <#= ProjectName #>
+{
+	public class <#= BaseClassName #>Service : I<#= BaseClassName #>IService
+	{
+	<# 
+	if (CreatedRepo)
+	{
+		var lowerBaseClassname = BaseClassName.ToLower();
+	#>
+		private readonly I<#= BaseClassName #>Repo _<#= lowerBaseClassname #>Repo;
+
+		public <#= BaseClassName #>Service(I<#= BaseClassName #>Repo <#= lowerBaseClassname #>repo)
+		{
+			_<#= lowerBaseClassname #>Repo = <#= lowerBaseClassname #>repo;
+		}
+	<#
+	}
+	#>
+	}
+}
