@@ -4,21 +4,21 @@
 <#@ parameter name="ProjectName" type="System.String" #>
 namespace <#= ProjectName #>
 {
-	public class <#= BaseClassName #>Service : I<#= BaseClassName #>IService
+	public class <#= BaseClassName #>Service : I<#= BaseClassName #>Service
 	{
 	<# 
 	if (CreatedRepo)
 	{
 		var lowerBaseClassname = BaseClassName.ToLower();
 	#>
-		private readonly I<#= BaseClassName #>Repo _<#= lowerBaseClassname #>Repo;
+		private readonly I<#= BaseClassName #>Repository _<#= lowerBaseClassname #>Repository;
 
-		public <#= BaseClassName #>Service(I<#= BaseClassName #>Repo <#= lowerBaseClassname #>repo)
+		public <#= BaseClassName #>Service(I<#= BaseClassName #>Repository <#= lowerBaseClassname #>Repository)
 		{
-			_<#= lowerBaseClassname #>Repo = <#= lowerBaseClassname #>repo;
+			_<#= lowerBaseClassname #>Repository = <#= lowerBaseClassname #>Repository;
 		}
 	<#
 	}
 	#>
-	}
+    }
 }

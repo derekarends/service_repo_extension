@@ -46,7 +46,7 @@ namespace ThinkovatorInc.AddClassTemplate.Templates
             
             #line default
             #line hidden
-            this.Write("IService\r\n\t{\r\n\t");
+            this.Write("Service\r\n\t{\r\n\t");
             
             #line 9 "C:\Dev\Extensions\AddClassTemplate\AddClassTemplate\Templates\ServiceTemplate.tt"
  
@@ -64,14 +64,14 @@ namespace ThinkovatorInc.AddClassTemplate.Templates
             
             #line default
             #line hidden
-            this.Write("Repo _");
+            this.Write("Repository _");
             
             #line 14 "C:\Dev\Extensions\AddClassTemplate\AddClassTemplate\Templates\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerBaseClassname));
             
             #line default
             #line hidden
-            this.Write("Repo;\r\n\r\n\t\tpublic ");
+            this.Write("Repository;\r\n\r\n\t\tpublic ");
             
             #line 16 "C:\Dev\Extensions\AddClassTemplate\AddClassTemplate\Templates\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(BaseClassName));
@@ -85,28 +85,28 @@ namespace ThinkovatorInc.AddClassTemplate.Templates
             
             #line default
             #line hidden
-            this.Write("Repo ");
+            this.Write("Repository ");
             
             #line 16 "C:\Dev\Extensions\AddClassTemplate\AddClassTemplate\Templates\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerBaseClassname));
             
             #line default
             #line hidden
-            this.Write("repo)\r\n\t\t{\r\n\t\t\t_");
+            this.Write("Repository)\r\n\t\t{\r\n\t\t\t_");
             
             #line 18 "C:\Dev\Extensions\AddClassTemplate\AddClassTemplate\Templates\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerBaseClassname));
             
             #line default
             #line hidden
-            this.Write("Repo = ");
+            this.Write("Repository = ");
             
             #line 18 "C:\Dev\Extensions\AddClassTemplate\AddClassTemplate\Templates\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerBaseClassname));
             
             #line default
             #line hidden
-            this.Write("repo;\r\n\t\t}\r\n\t");
+            this.Write("Repository;\r\n\t\t}\r\n\t");
             
             #line 20 "C:\Dev\Extensions\AddClassTemplate\AddClassTemplate\Templates\ServiceTemplate.tt"
 
@@ -115,7 +115,7 @@ namespace ThinkovatorInc.AddClassTemplate.Templates
             
             #line default
             #line hidden
-            this.Write("\t}\r\n}\r\n");
+            this.Write("    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
         

@@ -156,10 +156,11 @@ namespace ThinkovatorInc.AddClassTemplate
             return false;
         }
 
-        private static void CreateFiles(ClassEntry entry, string path, IVsHierarchy hierarchy)
+        private static void CreateFiles(ClassEntry entry, string inputPath, IVsHierarchy hierarchy)
         {
-            var directory = new DirectoryInfo(path);
+            var directory = new DirectoryInfo(inputPath);
             var projectName = directory.Name;
+            var path = Path.Combine(inputPath, Guid.NewGuid().ToString());
 
             if (entry.CreateRequestModel)
             {
@@ -174,10 +175,9 @@ namespace ThinkovatorInc.AddClassTemplate
                 requestTemplate.Initialize();
 
                 var requestName = string.Format("{0}RequestModel.cs", entry.BaseClassName);
-                var requestPath = string.Format(@"{0}\model", path);
                 var requestContent = requestTemplate.TransformText();
 
-                AddFileToSolution(requestName, requestPath, requestContent, hierarchy);
+                AddFileToSolution(requestName, path, requestContent, hierarchy);
             }
 
             if (entry.CreateResponseModel)
@@ -193,10 +193,9 @@ namespace ThinkovatorInc.AddClassTemplate
                 responseTemplate.Initialize();
 
                 var responseName = string.Format("{0}ResponseModel.cs", entry.BaseClassName);
-                var responsePath = string.Format(@"{0}\model", path);
                 var responseContent = responseTemplate.TransformText();
 
-                AddFileToSolution(responseName, responsePath, responseContent, hierarchy);
+                AddFileToSolution(responseName, path, responseContent, hierarchy);
             }
 
             if (entry.CreateRepo)
@@ -212,10 +211,9 @@ namespace ThinkovatorInc.AddClassTemplate
                 iRepoTemplate.Initialize();
 
                 var iRepoName = string.Format("I{0}Repository.cs", entry.BaseClassName);
-                var iRepoPath = string.Format(@"{0}\repository\interface", path);
                 var iRepoContent = iRepoTemplate.TransformText();
 
-                AddFileToSolution(iRepoName, iRepoPath, iRepoContent, hierarchy);
+                AddFileToSolution(iRepoName, path, iRepoContent, hierarchy);
 
 
                 var repoTemplate = new RepoTemplate
@@ -229,10 +227,9 @@ namespace ThinkovatorInc.AddClassTemplate
                 repoTemplate.Initialize();
 
                 var repoName = string.Format("{0}Repository.cs", entry.BaseClassName);
-                var repoPath = string.Format(@"{0}\repository\concrete", path);
                 var repoContent = repoTemplate.TransformText();
 
-                AddFileToSolution(repoName, repoPath, repoContent, hierarchy);
+                AddFileToSolution(repoName, path, repoContent, hierarchy);
             }
 
             if (entry.CreateService)
@@ -248,10 +245,9 @@ namespace ThinkovatorInc.AddClassTemplate
                 iServiceTemplate.Initialize();
 
                 var iServiceName = string.Format("I{0}Service.cs", entry.BaseClassName);
-                var iServicePath = string.Format(@"{0}\service\interface", path);
                 var iServiceContent = iServiceTemplate.TransformText();
 
-                AddFileToSolution(iServiceName, iServicePath, iServiceContent, hierarchy);
+                AddFileToSolution(iServiceName, path, iServiceContent, hierarchy);
 
                 var serviceTemplate = new ServiceTemplate();
                 serviceTemplate.Session = new Dictionary<string, object>
@@ -262,11 +258,13 @@ namespace ThinkovatorInc.AddClassTemplate
                 };
                 serviceTemplate.Initialize();
                 var serviceName = string.Format("{0}Service.cs", entry.BaseClassName);
-                var servicePath = string.Format(@"{0}\service\concrete", path);
                 var serviceContent = serviceTemplate.TransformText();
 
-                AddFileToSolution(serviceName, servicePath, serviceContent, hierarchy);
+                AddFileToSolution(serviceName, path, serviceContent, hierarchy);
             }
+
+            if(Directory.Exists(path))
+                Directory.Delete(path, true);
 
             var completed = new Complete();
             completed.ShowDialog();
@@ -280,20 +278,20 @@ namespace ThinkovatorInc.AddClassTemplate
                 Directory.CreateDirectory(path);
 
             File.WriteAllText(itemPath, content);
-            //if (!File.Exists(itemPath))
-            //    return;
+            if (!File.Exists(itemPath))
+                return;
 
-            //var vsProject = (IVsProject)hierarchy;
+            var vsProject = (IVsProject)hierarchy;
 
-            //var result = new VSADDRESULT[1];
-            //vsProject.AddItem(
-            //    VSConstants.VSITEMID_ROOT,
-            //    VSADDITEMOPERATION.VSADDITEMOP_OPENFILE,
-            //    @"\service\interface\" + itemName,
-            //    1,
-            //    new[] { itemPath },
-            //    IntPtr.Zero,
-            //    result);
+            var result = new VSADDRESULT[1];
+            vsProject.AddItem(
+                VSConstants.VSITEMID_ROOT,
+                VSADDITEMOPERATION.VSADDITEMOP_OPENFILE,
+                itemPath,
+                1,
+                new[] { itemPath },
+                IntPtr.Zero,
+                result);
         }
     }
 }
